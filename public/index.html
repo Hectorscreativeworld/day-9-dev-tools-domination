@@ -1,13 +1,85 @@
 <!DOCTYPE html>
-<html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Day 9 Dev Tools Domination</title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/screen.css">
-  </head>
-  <body>
-    <h1 class='hello-world'>Hello, World!</h1>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+
+<body>
+  <h1>CONSOLE LOG TRICKS</h1>
+  <p>check out the console log to see them</p>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{
+      name: 'Snickers',
+      age: 2
+    }, {
+      name: 'hugo',
+      age: 8
+    }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+    // Regular
+    console.log('hello')
+
+    // Interpolated
+    console.log('Hello I am %s string!', 'AWESOME')
+
+    // Styled
+    console.log('%c I am some great text', 'font-size:20px; background:blue; color: white')
+
+    // warning!
+    console.warn('Warning Will Robinson')
+
+    // Error :|
+    console.error('Error turn around now!!!')
+
+    // Info
+    console.info('Crocodiles eat 3-4 people per year')
+
+    // Testing will only run if something is wrong
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('ouch'), 'That is wrong!')
+
+    // clearing
+    // console.clear();
+
+    // Viewing DOM Elements
+    console.log(p);
+    console.dir(p)
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`)
+      console.log(`This is ${dog.name}`)
+      console.log(`${dog.name} is ${dog.age} years old`)
+      console.log(`${dog.name} is ${dog.age * 7} dogs years old`)
+      console.groupEnd(`${dog.name}`)
+    })
+    // counting
+    console.count('RADE!!!')
+    console.count('RADE!!!')
+    console.count('RADE!!!')
+    console.count('RADE!!!')
+    console.count('RADE!!!')
+
+    // timing
+    console.time('fetching data')
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data')
+        console.log(data)
+      })
+    console.table(dogs)
+  </script>
+</body>
+
 </html>
